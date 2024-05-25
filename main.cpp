@@ -1,4 +1,3 @@
-#include <bitset>
 #include <iostream>
 #include <map>
 #include <memory>
@@ -28,6 +27,7 @@ void printHuffmanCodes(const std::shared_ptr<HuffmanNode> &root,
                        std::map<char, std::string> &huffmanCodeMap) {
   if (!root)
     return;
+  // '#' is our "blank character" text cant contain these
   if (root->character != '#') {
     std::cout << root->character << ": " << code << '\n';
     huffmanCodeMap[root->character] = code;
@@ -123,6 +123,9 @@ int main() {
   std::cout << "Compressed text:\n" << encodedText << '\n';
   std::cout << "\nOriginal text size (in bits): " << originalSize << '\n';
   std::cout << "Compressed text size (in bits): " << compressedSize << '\n';
+  std::cout << "Original text bits per character: 8 (duh)" << '\n';
+  std::cout << "Compressed text bits per character: "
+            << (double)compressedSize / (double)s.size() << '\n';
   auto compressionRatio = (double)compressedSize / (double)originalSize;
   std::cout << "Compression Ratio: " << compressionRatio << '\n';
 
